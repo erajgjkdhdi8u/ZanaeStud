@@ -66,3 +66,16 @@ document.querySelector(".white").onclick=async()=>{
     });
 
 }
+preview.addEventListener("dblclick",()=>{
+
+    if(preview.style.transform=="scale(2)"){
+
+        preview.style.transform="scale(1)";
+
+    }else{
+
+        preview.style.transform="scale(2)";
+
+    }
+
+});
