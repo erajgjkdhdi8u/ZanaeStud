@@ -387,3 +387,24 @@ button:active::after{
     box-shadow:0 15px 45px rgba(0,0,0,.18);
 
 }
+body{
+
+    animation:fadePage .35s;
+
+}
+
+@keyframes fadePage{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
