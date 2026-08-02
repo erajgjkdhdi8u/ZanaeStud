@@ -54,7 +54,7 @@ main{
     width:100%;
     display:block;
     cursor:pointer;
-    transition:.3s;
+    transition:.35s;
 }
 
 .card img:hover{
