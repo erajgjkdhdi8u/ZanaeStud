@@ -1,18 +1,11 @@
 {
-  "name": "Студенческий билет",
-  "short_name": "ID",
-  "start_url": "./",
+  "name": "Фото",
+  "short_name": "Фото",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "start_url": "index.html",
   "icons": [
     {
-      "src": "kaspi_icon.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icon.png",
+      "src": "Photo.png.jpg",
       "sizes": "512x512",
       "type": "image/png"
     }
