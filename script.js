@@ -22,7 +22,19 @@ upload.addEventListener("change",()=>{
 
     reader.onload=e=>{
 
-        preview.src=e.target.result;
+        preview.style.opacity = "0";
+
+setTimeout(() => {
+
+    preview.src = e.target.result;
+
+    preview.onload = () => {
+
+        preview.style.opacity = "1";
+
+    };
+
+},150);
 
         localStorage.setItem(
             "studentCard",
