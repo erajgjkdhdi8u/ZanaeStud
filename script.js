@@ -1,18 +1,33 @@
 const upload = document.getElementById("upload");
 const preview = document.getElementById("preview");
 
-// Загрузка изображения
-upload.addEventListener("change", function () {
+// Загружаем сохранённое фото
+const saved = localStorage.getItem("studentCard");
 
-    const file = this.files[0];
+if(saved){
 
-    if (!file) return;
+    preview.src = saved;
+
+}
+
+// Выбор нового фото
+
+upload.addEventListener("change",()=>{
+
+    const file = upload.files[0];
+
+    if(!file) return;
 
     const reader = new FileReader();
 
-    reader.onload = function(e){
+    reader.onload=e=>{
 
-        preview.src = e.target.result;
+        preview.src=e.target.result;
+
+        localStorage.setItem(
+            "studentCard",
+            e.target.result
+        );
 
     }
 
@@ -20,30 +35,34 @@ upload.addEventListener("change", function () {
 
 });
 
-// Просмотр на весь экран
-preview.addEventListener("click", () => {
+// Полноэкранный просмотр
 
-    if (preview.requestFullscreen) {
+preview.onclick=()=>{
+
+    if(preview.requestFullscreen){
+
         preview.requestFullscreen();
+
     }
 
-});
+}
 
-// Поделиться изображением
-document.querySelector(".white").addEventListener("click", async () => {
+// Поделиться
 
-    if (!navigator.share) {
-        alert("Ваш браузер не поддерживает функцию «Поделиться».");
+document.querySelector(".white").onclick=async()=>{
+
+    if(!navigator.share){
+
+        alert("Функция недоступна");
+
         return;
+
     }
 
-    try{
+    await navigator.share({
 
-        await navigator.share({
-            title:"Студенческий билет",
-            text:"Мой студенческий билет"
-        });
+        title:"Студенческий билет"
 
-    }catch(e){}
+    });
 
-});
+}
