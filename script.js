@@ -79,3 +79,33 @@ preview.addEventListener("dblclick",()=>{
     }
 
 });
+const viewer = document.getElementById("viewer");
+const viewerImg = document.getElementById("viewerImg");
+const closeViewer = document.getElementById("closeViewer");
+
+// Открыть изображение
+preview.addEventListener("click", () => {
+
+    viewer.classList.add("show");
+
+    viewerImg.src = preview.src;
+
+});
+
+// Закрыть
+closeViewer.onclick = () => {
+
+    viewer.classList.remove("show");
+
+};
+
+// Закрытие по нажатию на фон
+viewer.onclick = (e) => {
+
+    if(e.target === viewer){
+
+        viewer.classList.remove("show");
+
+    }
+
+};
