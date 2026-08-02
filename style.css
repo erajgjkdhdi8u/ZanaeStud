@@ -124,3 +124,58 @@ main{
 button:hover{
     opacity:.95;
 }
+/* Splash Screen */
+
+#splash{
+    position:fixed;
+    inset:0;
+    background:#ffffff;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    animation:hideSplash .8s ease forwards;
+    animation-delay:1.2s;
+}
+
+.logo{
+    width:90px;
+    height:90px;
+    border-radius:25px;
+    background:#007AFF;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:42px;
+    color:white;
+    margin-bottom:20px;
+
+    animation:bounce 1s infinite;
+}
+
+#splash h2{
+    font-size:22px;
+    font-weight:700;
+}
+
+@keyframes bounce{
+
+0%,100%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+}
+
+@keyframes hideSplash{
+
+to{
+opacity:0;
+visibility:hidden;
+}
+
+}
