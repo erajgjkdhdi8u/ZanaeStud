@@ -51,10 +51,14 @@ main{
 }
 
 .card img{
+
     width:100%;
     display:block;
-    cursor:pointer;
-    transition:.35s;
+
+    transition:
+        transform .35s,
+        opacity .35s;
+
 }
 
 .card img:hover{
