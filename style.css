@@ -281,3 +281,57 @@ button:active::after{
     opacity:0;
 
 }
+/* Просмотр изображения */
+
+.viewer{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.92);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.35s;
+
+    z-index:99999;
+
+}
+
+.viewer.show{
+
+    opacity:1;
+    visibility:visible;
+
+}
+
+.viewer img{
+
+    width:90%;
+    max-height:90%;
+
+    border-radius:20px;
+
+    transition:.3s;
+
+}
+
+#closeViewer{
+
+    position:absolute;
+
+    top:30px;
+    right:20px;
+
+    color:white;
+
+    font-size:34px;
+
+    cursor:pointer;
+
+}
