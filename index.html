@@ -1,420 +1,44 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Удостоверение личности</title>
-  <meta name="theme-color" content="#ffffff" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="kaspi_icon.png" />
-  <link rel="apple-touch-icon" href="kaspi_icon.png" />
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background-color: #fff; /* белый фон */
-      color: #000;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Студенческий билет</title>
 
-
-    header {
-      background-color: #fff;
-      padding: 14px;
-      font-weight: bold;
-      text-align: center;
-      font-size: 16px;
-      border-bottom: 1px solid #ddd;
-      position: relative;
-    }
-
-    .back-arrow {
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    .tabs {
-      position: relative;
-      display: flex;
-      background: #ecebeb;     /* серый фон */
-      border-radius: 10px;
-      padding: 4px;
-      width: 340px;
-      margin: 20px auto;       /* центрируем */
-    }
-
-    .tab {
-      flex: 1;
-      padding: 5px 0;
-      text-align: center;
-      z-index: 2;              /* вкладки поверх селектора */
-      cursor: pointer;
-      color: #333;
-      font-weight: 500;
-      font-size: 14px;
-    }
-
-    .tab.active {
-      color: black;
-    }
-
-    .tab-selector {
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: calc(50% - 2px); /* половина ширины контейнера */
-      height: calc(100% - 4px);
-      background: white;
-      border-radius: 7px;
-      transition: transform 0.3s ease;
-      z-index: 1;
-    }
-
-
-    /* если активна 2-я вкладка */
-    .tab:nth-child(2).active ~ ::before {
-      left: calc(33.33% + 3px);
-    }
-
-    /* если активна 3-я вкладка */
-    .tab:nth-child(3).active ~ ::before {
-      left: calc(66.66% + 3px);
-    }
-
-
-    .content {
-      padding: 0;
-      background-color: #fff;
-      min-height: calc(100vh - 140px);
-    }
-
-    .photo-container {
-      width: 100%;
-      height: 520px;
-      overflow: hidden;
-      touch-action: none;
-      position: relative;
-    }
-
-    .photo {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      transform-origin: center center;
-    }
-
-    .info-label {
-      font-weight: ;
-      margin-top: 5px;
-      font-size: 12px;
-      color: #817f7f;
-    }
-
-    .info-value {
-      display: flex;            /* горизонтальное расположение текста и иконки */
-      align-items: center;      /* вертикальное выравнивание по центру */
-      justify-content: space-between; /* текст слева, иконка справа */
-      font-size: 16px;
-      margin-bottom: 6px;
-    }
-
-    .copy-icon {
-    width: 20px;     /* размер иконки */
-    height: 20px;
-    cursor: pointer; /* курсор при наведении */
-  }
-
-    .btn {
-      display: block;
-      width: 85%;
-      margin: 12px auto;
-      padding: 18px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 16px;
-      text-align: center;
-      text-decoration: none;
-    }
-
-    .btn-primary {
-      background-color: #2c74e0;
-      color: white;
-    }
-
-    .btn-outline {
-      border: 1.5px solid #9abff1;
-      color: #2c74e0;
-      background-color: white;
-    }
-    .btn-icon {
-      width: 20px;       /* размер иконки */
-      height: 20px;
-      vertical-align: middle ;
-      margin-right: 1px; /* отступ справа от иконки */
-    }
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0); /* прозрачный фон по умолчанию */
-      z-index: 1000;
-      pointer-events: none; /* чтобы клики проходили, пока не показано */
-      transition: background 0.3s ease;
-    }
-
-    .modal.show {
-      background: rgba(0,0,0,0.4); /* затемнение фона */
-      pointer-events: auto;
-    }
-
-    .modal-content {
-      position: absolute;
-      bottom: -50%; /* изначально скрыто ниже экрана */
-      width: 100%;
-      height: 50%;
-      background-color: #fff;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-      padding: 20px;
-      box-sizing: border-box;
-      overflow-y: auto;
-      transition: bottom 0.1s ease;
-    }
-
-    .modal.show .modal-content {
-      bottom: 0; /* выезжает вверх */
-    }
-
-    .close {
-      position: absolute;
-      right: 16px;
-      top: 16px;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-
-
-
-    #info {
-      display: none; /* скрыт по умолчанию */
-      padding: 20px;
-      background-color: #fff;
-      min-height: calc(100vh - 100px);
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-  </style>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header>
-    <div class="back-arrow" onclick="window.history.back()">←</div>
-    Удостоверение личности
-  </header>
-  <div class="tabs">
-    <div class="tab-selector" id="selector"></div>
-    <div class="tab" onclick="showTab('doc')">Документ</div>
-    <div class="tab" onclick="showTab('info')">Реквизиты</div>
-  </div>
-  
 
+<header>
+    <button class="back">←</button>
+    <h1>Студенческий билет</h1>
+</header>
 
-  <div id="doc" class="content">
-    <div class="photo-container" id="photoContainer">
-      <img src="5194971353961328439.jpg" alt="Документ" class="photo" id="zoomable" />
-    </div>
-    <a href="#" class="btn btn-primary">
-      <img src="icon.png" alt="" class="btn-icon">
-      Предъявить документ
-    </a>
-    
-    <a href="#" class="btn btn-outline">
-      <img src="imgbin.png" alt="" class="btn-icon">
-      Отправить документ
-    </a>
-    <div id="modal" class="modal">
-      <div class="modal-content">
-              <span class="close" onclick="closeModal()">×</span>
-          
-              <!-- Верхняя надпись слева -->
-              <div style="text-align: left; font-weight: bold; font-size: 18px; margin-bottom: 20px;">
-                Удостоверение личности
-              </div>
-          
-              <!-- Подпись по центру -->
-              <div style="text-align: center; font-weight: normal; font-size: 14px; margin-bottom: 20px;">
-                Покажите QR-код сотруднику
-              </div>
-          
-              <!-- Картинка по центру -->
-              <div style="text-align: center; margin-bottom: 15px;">
-                <img src="QR.png" alt="QR Code" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
-              </div>
-          
-              <!-- Подпись ниже картинки -->
-              <div style="text-align: center; font-weight: normal; font-size: 14px; margin-bottom: 10px;">
-                или скажите код
-              </div>
-          
-              <!-- Сам код крупным жирным шрифтом -->
-              <div style="text-align: center; font-weight: bold; font-size: 24px;">
-                803558
-            </div>
-          </div>
-        </div>
-      </div>
-      
+<main>
 
-  <div id="info" class="content">
-    <div class="info-item">
-      <div class="info-label">ФИО</div>
-      <div class="info-value">
-        Югай Софья Владимировна
-        <img src="copy-icon.png" class="copy-icon" />
-      </div>
-    </div>
-    
-    <div class="info-item">
-      <div class="info-label">ИИН</div>
-      <div class="info-value">
-        031209601709
-        <img src="copy-icon.png" class="copy-icon" />
-      </div>
-    </div>
-    
-    <div class="info-item">
-      <div class="info-label">Дата рождения</div>
-      <div class="info-value">
-        09.12.2003
-        <img src="copy-icon.png" class="copy-icon" />
-      </div>
-    </div>
-    
-    <div class="info-item">
-      <div class="info-label">Номер документа</div>
-      <div class="info-value">
-        050260791
-        <img src="copy-icon.png" class="copy-icon" />
-      </div>
-    </div>
-    
-    <div class="info-item">
-      <div class="info-label">Дата выдачи</div>
-      <div class="info-value">
-        04.03.2022
-        <img src="copy-icon.png" class="copy-icon" />
-      </div>
-    </div>
-    
-    <div class="info-item">
-      <div class="info-label">Срок действия</div>
-      <div class="info-value">
-        03.03.2032
-        <img src="copy-icon.png" class="copy-icon" />
-      </div>
-    </div>
-    
-    <a href="#" class="btn btn-outline">Отправить реквизиты</a>
-  </div>
+<div class="card">
 
-  <script>
-    function showTab(id) {
-      document.getElementById('doc').style.display = id === 'doc' ? 'block' : 'none';
-      document.getElementById('info').style.display = id === 'info' ? 'flex' : 'none';
+    <img id="preview" src="https://placehold.co/350x500?text=Student+Card">
 
-      const selector = document.getElementById('selector');
-      selector.style.transform = id === 'doc' ? 'translateX(0%)' : 'translateX(100%)';
+</div>
 
-      const tabs = document.querySelectorAll('.tab');
-      tabs.forEach(tab => tab.classList.remove('active'));
-      document.querySelector(`.tab[onclick="showTab('${id}')"]`).classList.add('active');
-    }
+<input type="file"
+id="upload"
+accept="image/*"
+hidden>
 
+<button class="blue" onclick="upload.click()">
+Выбрать фото
+</button>
 
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js').then(() => {
-        console.log("Service Worker registered");
-      });
-    }
+<button class="white">
+Поделиться документом
+</button>
 
-    const img = document.getElementById("zoomable");
-    const container = document.getElementById("photoContainer");
+</main>
 
-    let scale = 1, lastScale = 1;
-    let posX = 0, posY = 0;
-    let lastX = 0, lastY = 0;
-    let isDragging = false;
+<script src="script.js"></script>
 
-    let startDist = 0;
-
-    container.addEventListener("touchstart", function (e) {
-      if (e.touches.length === 2) {
-        startDist = Math.hypot(
-          e.touches[0].clientX - e.touches[1].clientX,
-          e.touches[0].clientY - e.touches[1].clientY
-        );
-        lastScale = scale;
-      } else if (e.touches.length === 1) {
-        isDragging = true;
-        lastX = e.touches[0].clientX - posX;
-        lastY = e.touches[0].clientY - posY;
-      }
-    });
-
-    container.addEventListener("touchmove", function (e) {
-      if (e.touches.length === 2) {
-        e.preventDefault();
-        const newDist = Math.hypot(
-          e.touches[0].clientX - e.touches[1].clientX,
-          e.touches[0].clientY - e.touches[1].clientY
-        );
-        scale = Math.min(3, Math.max(1, lastScale * (newDist / startDist)));
-        img.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
-      } else if (e.touches.length === 1 && isDragging) {
-        e.preventDefault();
-        posX = e.touches[0].clientX - lastX;
-        posY = e.touches[0].clientY - lastY;
-        img.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
-      }
-    });
-
-    container.addEventListener("touchend", function (e) {
-      if (e.touches.length < 2) {
-        isDragging = false;
-      }
-    });
-
-
-    const modal = document.getElementById("modal");
-
-    function openModal() {
-      modal.style.display = "block"; // сначала делаем видимым
-      setTimeout(() => modal.classList.add("show"), 8); // запускаем анимацию через 10мс
-    }
-
-    function closeModal() {
-      modal.classList.remove("show");
-      setTimeout(() => modal.style.display = "none", 300); // скрываем после окончания анимации
-    }
-
-    document.querySelector(".btn-primary").addEventListener("click", function(e){
-      e.preventDefault();
-      openModal();
-    });
-
-
-
-  </script>
 </body>
 </html>
-
-
