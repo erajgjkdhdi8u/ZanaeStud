@@ -107,3 +107,20 @@ main{
         transform:translateY(0);
     }
 }
+.card img{
+    aspect-ratio:9/16;
+    object-fit:contain;
+    background:#f0f0f0;
+}
+
+.card{
+    transition:.35s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+}
+
+button:hover{
+    opacity:.95;
+}
