@@ -372,3 +372,18 @@ button:active::after{
     }
 
 }
+.card{
+
+    transition:
+        transform .35s,
+        box-shadow .35s;
+
+}
+
+.card:active{
+
+    transform:scale(.99);
+
+    box-shadow:0 15px 45px rgba(0,0,0,.18);
+
+}
